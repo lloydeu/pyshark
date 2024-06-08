@@ -2,6 +2,8 @@
 import pygame
 from random import randint
 
+from pygame.sprite import Group
+
 
 # shark start pos ((SCREEN_WIDTH, random_y, SCREEN_WIDTH + self.width, random_y + self.height)) 
 # constants
@@ -18,6 +20,10 @@ def update(entity, dt):
 def main():
     # pygame setup
     pygame.init()
+
+    sharks = pygame.sprite.Group()
+    fishes = pygame.sprite.Group()
+
 
     # create player class
     class Player(pygame.sprite.Sprite):
@@ -38,6 +44,7 @@ def main():
             self.speed = randint(-20,20)
             self.surface = pygame.Surface((10,20))
             self.rect = self.surface.get_rect()  
+            self.add(fishes)
           
 
     class Shark(Fish):
@@ -52,6 +59,7 @@ def main():
             self.surface = pygame.Surface((self.width, self.height))
             self.surface.fill("black")
             self.rect = self.surface.get_rect()
+            self.add(sharks)
 
     
     
@@ -77,6 +85,7 @@ def main():
     running = True
         
     shark = Shark()
+    
 
     # game loop
     while running:
@@ -104,6 +113,8 @@ def main():
 
         pygame.display.flip()
         dt = clock.tick(30)/1000
+
+        
 
        
    

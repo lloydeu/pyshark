@@ -229,7 +229,7 @@ class Shark(pygame.sprite.Sprite):
                 surface.blit(surface, surface.get_rect(x = cumulative_width))
                 cumulative_width += surface.get_width()
         
-            shark.image.blit(temp_surface, temp_surface.get_rect(center = (shark.width*2//5, shark.height//2)))
+            shark.image.blit(temp_surface, temp_surface.get_rect(center = (shark.width*2//5, shark.height*0.52)))
                             
 class Boss(pygame.sprite.Sprite):
    
@@ -806,6 +806,15 @@ def main_menu(screen = pygame.display.set_mode([SCREEN_WIDTH,SCREEN_HEIGHT])):
                     # nav_list (main_menu, exit_game)
                     replay = nav_list[0]
 
+                    # reset
+                    buttons.empty()
+                    sharks.empty()
+                    fishes.empty()
+                    players.empty()
+                    bombs.empty()
+                    bosses.empty()
+                    breakthrough_enemy.empty()
+
                 # reset values
                 play_button = Button('Play', button_sprite, (SCREEN_WIDTH*3//4, SCREEN_HEIGHT*3//5), main, screen)
                 credits_button = Button('Credits', button_sprite, (SCREEN_WIDTH*3//4, SCREEN_HEIGHT*2//3 + 120), credits, screen)
@@ -1014,7 +1023,7 @@ def game_over_screen(screen, score):
 
                 buttons.empty()
                 bubbles.empty()
-                return [False, True]
+                return button.onclick()
                 
             
             if update_buttons:

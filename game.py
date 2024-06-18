@@ -16,7 +16,7 @@ pygame.init()
 # constants
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-TITLE = 'pyShark'
+TITLE = 'pyShark Typer'
 MIN_SPAWN_HEIGHT = 10
 MAX_SPAWN_HEIGHT = int(SCREEN_HEIGHT * 0.8)
 SHARK_WORDS = []
@@ -633,7 +633,6 @@ def main(screen):
                     pygame.event.post(pygame.event.Event(SCROLL))
             
             for player in players:
-                print(player)
                 update(player, dt, animation_frame, player.y_velocity)
 
             for bomb in bombs:
@@ -677,8 +676,8 @@ def main(screen):
 def main_menu(screen = pygame.display.set_mode([SCREEN_WIDTH,SCREEN_HEIGHT])):
 
     # create screen
-    # screen = pygame.display.set_mode([SCREEN_WIDTH,SCREEN_HEIGHT])
     pygame.display.set_caption(TITLE)
+    pygame.display.set_icon(pygame.image.load('logo.png'))
 
     # main_menu sprites
     button_sprite = load_sprites('shark', 8, (804//2, 350//2))
@@ -947,7 +946,7 @@ def credits(screen):
 def game_over_screen(screen, score):
     
     # game over screen
-    background_img = pygame.image.load('bg_1.png').convert()
+    background_img = pygame.image.load('game_over_1.png').convert()
     button_sprite = load_sprites('shark', 8, (804//2, 350//2))      
     replay_button = Button('Play again', button_sprite, (SCREEN_WIDTH*0.55, SCREEN_HEIGHT*0.6), return_args, [True, True])
     back_button = Button('Main Menu', button_sprite, (SCREEN_WIDTH*0.55, SCREEN_HEIGHT*0.85), return_args, [False, True])
